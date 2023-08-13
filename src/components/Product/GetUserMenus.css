@@ -1,0 +1,16 @@
+.GetUserMenus-Container {
+    height: 100%;
+    width: 100%;
+    background-color: #202020af;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
+  }
+  .GetUserMenus-Container .GetUserMenus-SubContainer {
+    height: 98%;
+    width: 98%;
+    margin-top: 32px;
+    margin: 10px 0 0 0;
+  }
+  

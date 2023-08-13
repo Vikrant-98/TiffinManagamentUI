@@ -1,0 +1,58 @@
+.GetProduct-Container {
+  height: inherit;
+  width: inherit;
+  background-color: #202020af;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.GetProduct-Container .GetProduct-SubContainer1 {
+  height: 90%;
+  width: 70%;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.GetProduct-Container .GetProduct-SubContainer1 .GetProduct-SubContainer11 {
+  height: 100%;
+  width: 100%;
+}
+
+.GetProduct-Container .GetProduct-SubContainer {
+  height: inherit;
+  width: inherit;
+  display: flex;
+}
+
+.GetProduct-Container .GetProduct-SubContainer2 {
+  height: 100%;
+  width: 30%;
+  padding: 10px 10px 10px 0px;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  flex-direction: row;
+}
+
+.GetProduct-Container .GetProduct-SubContainer2 .GetProduct-SubContainer-Paper {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.GetProduct-Container .MuiPaginationItem-outlinedSecondary.Mui-selected {
+  color: black;
+  border: black;
+  background-color: white;
+}
