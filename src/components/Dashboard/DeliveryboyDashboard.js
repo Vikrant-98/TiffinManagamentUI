@@ -449,24 +449,12 @@ export default class DeliveryboyDashboard extends Component {
                                         boxSizing: "border-box",
                                     }}
                                 >
-                                    Online Food Delivery &nbsp;
+                                   Food Box Express &nbsp;
                                     <div style={{ margin: "3px 0 0 0" }}>
                                         <KitchenIcon />
                                     </div>
                                 </Typography>
-                                <div className="search" style={{ flexGrow: 0.5 }}>
-                                    <div className="searchIcon">
-                                        <SearchIcon />
-                                    </div>
-                                    <InputBase
-                                        placeholder="Search OrderList"
-                                        classes={{
-                                            root: "inputRoot",
-                                            input: "inputInput",
-                                        }}
-                                        inputProps={{ "aria-label": "search" }}
-                                    />
-                                </div>
+                              
 
                                 <Button
                                     color="inherit"
@@ -545,6 +533,12 @@ export default class DeliveryboyDashboard extends Component {
                                                                 align="center"
                                                                 style={{ width: 210, fontWeight: 600, fontSize: 15 }}
                                                             >
+                                                              Customer Address
+                                                            </TableCell>
+                                                            <TableCell
+                                                                align="center"
+                                                                style={{ width: 210, fontWeight: 600, fontSize: 15 }}
+                                                            >
                                                                 Order Status
                                                             </TableCell>
                                                             <TableCell
@@ -595,6 +589,9 @@ export default class DeliveryboyDashboard extends Component {
                                                                         <TableCell align="center" style={{ width: 100 }}>
                                                                             {diffDays}
                                                                         </TableCell>
+                                                                        <TableCell align="center" style={{ width: 100 }}>
+                                                                          {data.address}{data.area}
+                                                                        </TableCell>
 
                                                                         <TableCell align="center" style={{ width: 100 }}>
                                                                             {data.orderStatus}
@@ -607,6 +604,7 @@ export default class DeliveryboyDashboard extends Component {
                                                                                 size="small"
                                                                                 id="deliveryboylist"
                                                                                 style={{ margin: 20 }}
+                                                                                disabled={data.orderStatus === "Delivered"}
                                                                                 // error={SportNameFlag}
                                                                                 value={OrderStatusDB}
                                                                                 onChange={(e) => this.handleInputDelveryboy(e,data.orderId)}

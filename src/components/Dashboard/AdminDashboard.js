@@ -1014,7 +1014,7 @@ class AdminDashboard extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  Online Food Delivery &nbsp;
+                  Food Box Express &nbsp;
                   <div style={{ margin: "3px 0 0 0" }}>
                     <KitchenIcon />
                   </div>

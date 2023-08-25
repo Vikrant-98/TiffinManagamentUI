@@ -1,15 +1,11 @@
 import React, { Component } from "react";
 import "./SignUp.css";
-
-import AuthServices from "../configurations/AuthServices";
 import TextField from "@material-ui/core/TextField";
-
 import Button from "@material-ui/core/Button";
-
 import Snackbar from "@material-ui/core/Snackbar";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
-
+import AuthServices from "../configurations/AuthServices";
 
 const authServices = new AuthServices();
 
@@ -18,7 +14,7 @@ const PasswordRegex = RegExp(
 );
 
 export default class SignUp extends Component {
-  constructor() {
+  constructor(props) {
     super();
     this.state = {
       Radiovalue: "Admin",
@@ -28,18 +24,17 @@ export default class SignUp extends Component {
       Password: "",
       ConfirmPassword: "",
       Role: "",
-
       FirstNameFlag: false,
       LastNameFlag: false,
       EmailIDFlag: false,
-      Adharno: "",
-      AdharnoFlag: false,
+      MobileNo: "",
+      MobileNoFlag: false,
       PasswordFlag: false,
       ConfirmPasswordFlag: false,
       RoleFlag: false,
-
       open: false,
       Message: "",
+      
     };
   }
 
@@ -48,6 +43,7 @@ export default class SignUp extends Component {
       return;
     }
     this.setState({ open: false });
+    
   };
 
   CheckValidity() {
@@ -57,10 +53,8 @@ export default class SignUp extends Component {
       FirstNameFlag: false,
       LastNameFlag: false,
       EmailIDFlag: false,
-      AdharnoFlag: false,
+      MobileNoFlag: false,
       PasswordFlag: false,
-     
-      RoleFlag: false,
     });
 
     if (this.state.FirstName === "") {
@@ -73,27 +67,18 @@ export default class SignUp extends Component {
     if (this.state.EmailID === "") {
       this.setState({ EmailIDFlag: true });
     }
-    if (this.state.Adharno === "") {
-      this.setState({ AdharnoFlag: true });
+    if (this.state.MobileNo === "") {
+      this.setState({ MobileNoFlag: true });
     }
     if (this.state.Password === "") {
       this.setState({ PasswordFlag: true });
-    }
-
-    if (this.state.Radiovalue === "Admin" && this.state.Role === "") {
-      this.setState({ RoleFlag: true });
     }
   }
 
   handleSubmit = (e) => {
     if (!this.state.PasswordFlag) {
       this.CheckValidity();
-      if (
-        this.state.Radiovalue === "Admin" &&
-        this.state.Role === ""
-      ) {
-        return;
-      }
+     
       if (
         this.state.LastName !== "" &&
         this.state.FirstName !== "" &&
@@ -106,9 +91,9 @@ export default class SignUp extends Component {
           "firstName": this.state.FirstName,
           "lastName": this.state.LastName,
           "emailID": this.state.EmailID,
-          "aadharNumber": this.state.Adharno.toString(),
+          "aadharNumber": this.state.MobileNo.toString(),
           "password": this.state.Password,
-          "role": this.state.Role
+          "role": "Customer"
 
         };
 
@@ -184,11 +169,18 @@ export default class SignUp extends Component {
         EmailIDFlag: false
       })
     }
-    if (e.target.name === "Adharno") {
+    if (e.target.name === "MobileNo") {
+      if(e.target.value.length < 10){
       this.setState({
-        Adharno: e.target.value,
-        AdharnoFlag: false
-      })
+        MobileNo: e.target.value,
+        MobileNoFlag: false
+      })}else{
+        this.setState({
+          MobileNoFlag:true,
+          open:true,
+          Message:"10 digit mobile number is allowed"
+        })
+      }
     }
 
     if (e.target.name === "Role") {
@@ -197,8 +189,6 @@ export default class SignUp extends Component {
         RoleFlag: false
       })
     }
-
-
     this.setState(
       { [name]: value },
       console.log("Name : ", name, "Value : ", value)
@@ -218,7 +208,7 @@ export default class SignUp extends Component {
     return (
       <div className="SignUp-Container">
         <div className="SignUp-SubContainer">
-          <div className="Title">Online Food Delivery</div>
+          <div className="Title">Food Box Express</div>
           <div className="Header_Container">Registration</div>
           <div className="Body">
             <form className="form">
@@ -258,13 +248,14 @@ export default class SignUp extends Component {
               <TextField
                 type="number"
                 className="TextField"
-                name="Adharno"
-                label="Adhar no"
+                name="MobileNo"
+                label="Mobile Number"
                 variant="outlined"
+                inputProps={{ maxLength: 10 }}
                 size="small"
                 style={{ margin: 10 }}
-                error={this.state.AdharnoFlag}
-                value={this.state.Adharno}
+                error={this.state.MobileNoFlag}
+                value={this.state.MobileNo}
                 onChange={this.handleChange}
               />
               <TextField
@@ -287,31 +278,7 @@ export default class SignUp extends Component {
               ) : (
                 <></>
               )}
-              {/* <TextField
-                className="TextField"
-                type="password"
-                name="ConfirmPassword"
-                label="Confirm Password"
-                variant="outlined"
-                size="small"
-                style={{ margin: 10 }}
-                error={this.state.ConfirmPasswordFlag}
-                value={this.state.ConfirmPassword}
-                onChange={this.handleChange}
-              /> */}
-
-              <TextField
-                className="TextField"
-                name="Role"
-                label="Role"
-                variant="outlined"
-                size="small"
-                style={{ margin: 10 }}
-                error={this.state.RoleFlag}
-                value={this.state.Role}
-                onChange={this.handleChange}
-              />
-
+           
             </form>
           </div>
           <div className="Buttons">

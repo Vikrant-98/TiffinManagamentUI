@@ -94,12 +94,12 @@ export default class UserDashBoard extends Component {
       LastnameFlag: false,
       EmailIdFlag: false,
       PasswordFlag: false,
-      AdharNoFlag: false,
+      MobileNoFlag: false,
       Firstname: "",
       Lastname: "",
       EmailId: "",
       Password: "",
-      AdharNo: "",
+      MobileNo: "",
 
       OrderDateFlag: false,
       OrdernameFlag: false,
@@ -452,11 +452,19 @@ export default class UserDashBoard extends Component {
         PasswordFlag: false
       })
     }
-    if (e.target.name === "AdharNo") {
+    if (e.target.name === "MobileNo") {
+      if(e.target.value.length <= 10){
       this.setState({
-        AdharNo: e.target.value,
-        AdharNoFlag: false
-      })
+        MobileNo: e.target.value,
+        MobileNoFlag: false
+      })}
+      else{
+        this.setState({
+          MobileNoFlag:true,
+          open:true,
+          Message:"10 digit mobile number is allowed"
+        })
+      }
     }
     this.setState({
       [e.target.name]: e.target.value
@@ -465,7 +473,7 @@ export default class UserDashBoard extends Component {
   }
 
   CheckValidationEdit = () => {
-    const { Firstname, Lastname, EmailId, Password, AdharNo } = this.state
+    const { Firstname, Lastname, EmailId, Password, MobileNo } = this.state
     console.log("CheckValidation Calling...");
 
 
@@ -491,9 +499,9 @@ export default class UserDashBoard extends Component {
         PasswordFlag: true
       })
     }
-    if (AdharNo === "") {
+    if (MobileNo === "") {
       this.setState({
-        AdharNoFlag: true
+        MobileNoFlag: true
       })
     }
   }
@@ -524,7 +532,7 @@ export default class UserDashBoard extends Component {
         "firstName": this.state.Firstname,
         "lastName": this.state.Lastname,
         // "emailID": localStorage.getItem("Email"),
-        "aadharNumber": this.state.AdharNo.toString(),
+        "aadharNumber": this.state.MobileNo.toString(),
         "password": this.state.Password,
         "role": "Customer"
 
@@ -533,15 +541,15 @@ export default class UserDashBoard extends Component {
       authServices
         .USerEditProfile(data)
         .then((data) => {
-          debugger
+          
           console.log("data : ", data);
-          if (data.data.success) {
+          if (data.data) {
             this.setState({
               Firstname: "",
               Lastname: "",
               EmailId: "",
               Password: "",
-              AdharNo: "",
+              MobileNo: "",
               OpenSnackBar: true,
               Message: data.data.message
 
@@ -834,7 +842,7 @@ export default class UserDashBoard extends Component {
   render() {
 
     const { FirstnameFlag, Firstname, LastnameFlag, Lastname, EmailId, EmailIdFlag, Password, addressDetails, addressAllDetails, UserAddressetails,
-      PasswordFlag, AdharNo, AdharNoFlag, Address, SelectArea, OpenUserHome, TiffinData, MyOrderData,
+      PasswordFlag, MobileNo, MobileNoFlag, Address, SelectArea, OpenUserHome, TiffinData, MyOrderData,
       OpenSnackBar, Message, ADDAddressFlag, editProfileFlag, MyOrder, OrderDate,
       OrderDateFlag, OrderPrice, OrderPriceFlag, Ordername, OrdernameFlag, OrderDetails,
       FromDate, FromDateFlag, ToDate, ToDateFlag, TotalDays, TotalDaysFlag, BookedBy, BookedByFlag, TiifinPanIdFlag, TiifinPanId
@@ -854,7 +862,7 @@ export default class UserDashBoard extends Component {
                     boxSizing: "border-box",
                   }}
                 >
-                  Online Food Delivery&nbsp;
+                  Food Box Express&nbsp;
                   <div style={{ margin: "3px 0 0 0" }}>
                     <KitchenIcon />
                   </div>
@@ -1320,13 +1328,13 @@ export default class UserDashBoard extends Component {
                               <TextField
                                 type="number"
                                 className="TextField1"
-                                name="AdharNo"
-                                label="Adhar Card Number"
+                                name="MobileNo"
+                                label="Mobile Number"
                                 variant="outlined"
                                 size="small"
                                 style={{ margin: 20 }}
-                                error={AdharNoFlag}
-                                value={AdharNo}
+                                error={MobileNoFlag}
+                                value={MobileNo}
                                 onChange={(e) => this.handleInputChangeEdit(e)}
                               />
 

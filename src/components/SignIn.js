@@ -76,7 +76,7 @@ export default class SignIn extends Component {
         .then((data) => {
           console.log("Sign In Data : ", data);
           if (data.data.loginData !== null) {
-            debugger
+            
              localStorage.setItem("token", data.data.token);
              localStorage.setItem("UserId", data.data.loginData.id);
              localStorage.setItem("Email", data.data.loginData.emailId);
@@ -115,7 +115,7 @@ export default class SignIn extends Component {
     return (
       <div className="SignIn-Container">
         <div className="SignUp-SubContainer">
-          <div className="Title">Online Food Delivery</div>
+          <div className="Title">Food Box Express</div>
           <div className="Header_Container">Log In</div>
           <div className="Body">
             <form className="form">

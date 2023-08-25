@@ -43,11 +43,6 @@ export default class AuthServices {
     return axiosServices.Get(baseURL +`/GetAllOrders`, true,headers);
   }
 
-
-
-  AllUserDetails(page,size) {
-    return axiosServices.Get(baseURL + `api/order/all/user/?page=${page}&size=${size}`,  true,headers);
-  }
   SaveOrders(data) {
     return axiosServices.post(baseURL  + `/AddOrdersByUserId`, data, true,headers);
   }
@@ -96,7 +91,7 @@ export default class AuthServices {
     return axiosServices.Get(baseURL + `api/order/assign/${OrderId}/${deliveryboyid}`, true,headers);
   }
   USerEditProfile(data) {
-    return axiosServices.put(baseURL + `/UpdateUser`, data, true,headers);
+    return axiosServices.post(baseURL + `/UpdateUser`, data, true,headers);
   }
   UserOrderData() {
     return axiosServices.Get(baseURL + `/GetAllOrdersByUserId`, true,headers);
